@@ -7,6 +7,7 @@ import com.example.cruduser.models.User;
 import com.example.cruduser.services.IUserService;
 import org.apache.catalina.UserDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +56,17 @@ public class UserController {
             return new ResponseEntity<List<UserDto>>(HttpStatus.NO_CONTENT);
 
         return new ResponseEntity<List<UserDto>>(list, HttpStatus.OK);
+
+    }
+
+    @PostMapping("/list-by-page")
+    public ResponseEntity<Page<UserDto>> getUsersByCriteriaAndPagination(@RequestBody UserCriteriaParametrage categorieParametrageCriteria) throws Exception {
+
+        Page<UserDto> list = userService.getUsersByCriteriaAndPagination(categorieParametrageCriteria);
+        if (list == null || list.isEmpty())
+            return new ResponseEntity<Page<UserDto>>(HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity<Page<UserDto>>(list, HttpStatus.OK);
 
     }
 

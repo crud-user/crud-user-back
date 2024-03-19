@@ -18,10 +18,12 @@ public class UserSpecificationParametrage implements Specification<User> {
         List<Predicate> predicates = new ArrayList<>();
         if(criteriaBuilder != null){
             if(userCriteriaParametrage.getEmail() != null && !userCriteriaParametrage.getEmail().isEmpty()){
-//                Expression<String> path1 = root.<String>get("email");
-//                Expression<String> lower1 = criteriaBuilder.lower(path1);
-                System.out.println("email::"+userCriteriaParametrage.getEmail());
-                predicates.add(criteriaBuilder.like(root.get("email"), "%"+userCriteriaParametrage.getEmail()+"%"));
+                Expression<String> path1 = root.<String>get("email");
+//                System.out.println("root .get(email)"+path1.toString());
+                Expression<String> lower1 = criteriaBuilder.lower(path1);
+//                System.out.println("criteriaBuilder.lower(path1)"+lower1.toString());
+//                System.out.println("email::"+userCriteriaParametrage.getEmail());
+                predicates.add(criteriaBuilder.like(lower1, "%"+userCriteriaParametrage.getEmail()+"%"));
             }
             if(userCriteriaParametrage.getUserName() != null && !userCriteriaParametrage.getUserName().isEmpty()){
                 Expression<String> path = root.<String>get("userName");

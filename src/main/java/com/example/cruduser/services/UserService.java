@@ -1,6 +1,7 @@
 package com.example.cruduser.services;
 
 
+import com.example.cruduser.DTOs.PageRequestDto;
 import com.example.cruduser.DTOs.UserDto;
 import com.example.cruduser.dao.criteria.UserCriteriaParametrage;
 import com.example.cruduser.dao.specification.UserSpecificationParametrage;
@@ -8,6 +9,8 @@ import com.example.cruduser.models.User;
 import com.example.cruduser.models.UserSpecifications;
 import com.example.cruduser.repositorises.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -60,5 +63,13 @@ public class UserService implements IUserService{
         Specification<User> specification = new UserSpecificationParametrage(userCriteriaParametrage);
             return userRepository.findAll(specification).stream()
                     .map(UserDto::mapUserToDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<UserDto> getUsersByCriteriaAndPagination(UserCriteriaParametrage categorieParametrageCriteria) {
+        Pageable pageable = new PageRequestDto().getPageable(categorieParametrageCriteria.getPageRequestDto());
+        Specification<User> specification = new UserSpecificationParametrage(categorieParametrageCriteria);
+        Page<User> studentPage = userRepository.findAll(specification, pageable);
+        return studentPage.map(UserDto::mapUserToDto);
     }
 }
