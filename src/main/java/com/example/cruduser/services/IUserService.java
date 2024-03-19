@@ -17,7 +17,7 @@ public interface IUserService {
     void deleteUser(Long id);
 
     List<User> likeName(String name);
-    public List<UserDto> findUsersByCriteria(UserCriteriaParametrage userCriteriaParametrage) throws Exception;
+    List<UserDto> findUsersByCriteria(UserCriteriaParametrage userCriteriaParametrage) throws Exception;
 
     Page<UserDto> getUsersByCriteriaAndPagination(UserCriteriaParametrage categorieParametrageCriteria);
 }
