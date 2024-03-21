@@ -17,7 +17,6 @@ public class PageRequestDto {
     private String sortByColumn = "id";
 
     public Pageable getPageable(PageRequestDto dto){
-        System.out.println("page:: "+dto.toString());
         Integer page = Objects.nonNull(dto.getPageNo()) ? dto.getPageNo() : this.pageNo;
         Integer size = Objects.nonNull(dto.getPageSize()) ? dto.getPageSize() : this.pageSize;
         Sort.Direction sort = Objects.nonNull(dto.getSort()) ? dto.getSort() : this.sort;
