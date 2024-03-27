@@ -8,6 +8,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
+
+import static com.example.cruduser.models.Permission.*;
 
 @Entity
 @Table(name = "users")
@@ -58,8 +62,24 @@ public class User implements UserDetails {
         return true;
     }
 
+    @RequiredArgsConstructor
     public enum UserRole {
-         USER,ADMIN
+        USER(Set.of(
+                USER_READ,
+                USER_UPDATE,
+                USER_DELETE,
+                USER_CREATE
+        )),
+        ADMIN(
+                Set.of(
+                        ADMIN_READ,
+                        ADMIN_UPDATE,
+                        ADMIN_DELETE,
+                        ADMIN_CREATE
+                )
+        );
+        private final Set<Permission> permissions ;
     }
+
 
 }
