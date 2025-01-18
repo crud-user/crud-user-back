@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "61ef5c94-9119-4483-8acb-64ebc8eb4792",
+		"name": "crud-user",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30212780"
+	},
+	"item": [
+		{
+			"name": "getUsers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJhYmRlc3NhbWFka2VjaDI4QGdtYWlsLmNvbSIsImlhdCI6MTcxMTAxODMxOCwiZXhwIjoxNzExMTYyMzE4fQ.v4vjBoIkR_S8-2otqP_-mAFbY2zmNal4vp4AgvmlSvI"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/api/v1/users"
+			},
+			"response": []
+		},
+		{
+			"name": "addUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"userName\": \"john_doe\",\r\n    \"password\": \"123\",\r\n    \"email\": \"john@example.com\",\r\n    \"dateNaissance\": \"1990-01-01\", // Date format YYYY-MM-DD\r\n    \"role\": \"USER\" // Role can be \"USER\" or \"ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/api/v1/users/add-user"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteUser",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8081/api/v1/users/1"
+			},
+			"response": []
+		},
+		{
+			"name": "updateUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJEb2UiLCJpYXQiOjE3MDk2MjcyNjgsImV4cCI6MTcwOTc3MTI2OH0.TykVten0c-QKOhAUnh2hU6KFTm_SR9LmdHz-OGGVYk4"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"userName\": \"john_doe\",\r\n    \"password\": \"112233\",\r\n    \"email\": \"john@example.com\",\r\n    \"dateNaissance\": \"1990-01-01\", // Date format YYYY-MM-DD\r\n    \"role\": \"USER\" // Role can be \"USER\" or \"ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/api/v1/users/1"
+			},
+			"response": []
+		},
+		{
+			"name": "registration",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJEb2UiLCJpYXQiOjE3MDk1Njc4NjQsImV4cCI6MTcwOTcxMTg2NH0.BdsB-0i1sp8K7dUaZ3hX8p698ECuLG2JVtSVqYC-E70"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Abdessamad1\",\r\n    \"lastname\": \"Abdessamadolm1\",\r\n    \"email\": \"abdessamadkech281@gmail.com\",\r\n    \"password\": \"123\",\r\n    \"dateNaissance\": \"1990-01-02\",\r\n    \"role\": \"ADMIN\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/api/v1/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "authentication",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"abdessamadkech28@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/api/v1/auth/authenticate"
+			},
+			"response": []
+		},
+		{
+			"name": "filterByName",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInN1YiI6Im11c3RhcGhhQGdtYWlsLmNvbSIsImlhdCI6MTcxMDI1MDM2MywiZXhwIjoxNzEwMzk0MzYzfQ.siFnvfYCIBKMQU2geD2-gspNkPwm_JF21oCwKqWllfs"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/users/specification?name=Abdessamad1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"specification"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Abdessamad1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filterByCriteria",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJhYmRlc3NhbWFka2VjaDI4QGdtYWlsLmNvbSIsImlhdCI6MTcxMTAxODMxOCwiZXhwIjoxNzExMTYyMzE4fQ.v4vjBoIkR_S8-2otqP_-mAFbY2zmNal4vp4AgvmlSvI"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n//   \"userName\": \"ta\",\r\n  \"email\": \"mustapha@gmail.com\"\r\n//   \"dateNaissance\": \"2024-03-08\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/api/v1/users/list-by-criteria"
+			},
+			"response": []
+		},
+		{
+			"name": "list-by-page",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiVVNFUiIsInN1YiI6Im1vdW5pckBnbWFpbC5jb20iLCJpYXQiOjE3MTA4NDg1NzUsImV4cCI6MTcxMDk5MjU3NX0.2rTVzw16u67pB8LOu0T-3RaIF4UIy8Ijjm8_uhq_tXc"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"mounir\",\r\n//   \"email\": \"johndoe@example.com\",\r\n//   \"dateNaissance\": \"1990-01-01\",\r\n  \"pageRequestDto\": {\r\n    \"pageNo\": 0,\r\n    \"pageSize\": 3,\r\n    \"sort\": \"DESC\",\r\n    \"sortByColumn\": \"dateNaissance\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/api/v1/users/list-by-page"
+			},
+			"response": []
+		}
+	]
+}
